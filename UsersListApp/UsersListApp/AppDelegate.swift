@@ -15,8 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let homeViewController = UIViewController()
-        window!.rootViewController = homeViewController
+        let tabbarController = UITabBarController()
+        let usersListNavController = UINavigationController(rootViewController: UsersListViewController())
+        let savedUsersListNavController = UINavigationController(rootViewController: UIViewController())
+        tabbarController.setViewControllers([usersListNavController, savedUsersListNavController], animated: false)
+        tabbarController.tabBar.barStyle = .default
+        window!.rootViewController = tabbarController
         window!.makeKeyAndVisible()
         return true
     }

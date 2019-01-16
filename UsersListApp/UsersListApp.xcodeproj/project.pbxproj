@@ -7,12 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		851D379121EF2150001D5EC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 851D379321EF2150001D5EC9 /* Localizable.strings */; };
+		858FE9C421EE6CB300EABAA3 /* UsersListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FE9BE21EE6CB300EABAA3 /* UsersListPresenter.swift */; };
+		858FE9C521EE6CB300EABAA3 /* UsersListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FE9BF21EE6CB300EABAA3 /* UsersListWorker.swift */; };
+		858FE9C621EE6CB300EABAA3 /* UsersListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FE9C021EE6CB300EABAA3 /* UsersListRouter.swift */; };
+		858FE9C721EE6CB300EABAA3 /* UsersListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FE9C121EE6CB300EABAA3 /* UsersListModels.swift */; };
+		858FE9C821EE6CB300EABAA3 /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FE9C221EE6CB300EABAA3 /* UsersListViewController.swift */; };
+		858FE9C921EE6CB300EABAA3 /* UsersListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FE9C321EE6CB300EABAA3 /* UsersListInteractor.swift */; };
 		85EDEA5621EE179500BC4907 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EDEA5521EE179500BC4907 /* AppDelegate.swift */; };
 		85EDEA5F21EE179700BC4907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85EDEA5E21EE179700BC4907 /* Assets.xcassets */; };
 		85EDEA6221EE179700BC4907 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85EDEA6021EE179700BC4907 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		851D378D21EF20A0001D5EC9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		851D379221EF2150001D5EC9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		851D379421EF21BD001D5EC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		858FE9BE21EE6CB300EABAA3 /* UsersListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListPresenter.swift; sourceTree = "<group>"; };
+		858FE9BF21EE6CB300EABAA3 /* UsersListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListWorker.swift; sourceTree = "<group>"; };
+		858FE9C021EE6CB300EABAA3 /* UsersListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListRouter.swift; sourceTree = "<group>"; };
+		858FE9C121EE6CB300EABAA3 /* UsersListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListModels.swift; sourceTree = "<group>"; };
+		858FE9C221EE6CB300EABAA3 /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
+		858FE9C321EE6CB300EABAA3 /* UsersListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListInteractor.swift; sourceTree = "<group>"; };
 		85EDEA5221EE179500BC4907 /* UsersListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsersListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EDEA5521EE179500BC4907 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85EDEA5E21EE179700BC4907 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -31,6 +47,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		851D378B21EF1565001D5EC9 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				851D378C21EF156C001D5EC9 /* UsersList */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		851D378C21EF156C001D5EC9 /* UsersList */ = {
+			isa = PBXGroup;
+			children = (
+				858FE9BE21EE6CB300EABAA3 /* UsersListPresenter.swift */,
+				858FE9BF21EE6CB300EABAA3 /* UsersListWorker.swift */,
+				858FE9C021EE6CB300EABAA3 /* UsersListRouter.swift */,
+				858FE9C121EE6CB300EABAA3 /* UsersListModels.swift */,
+				858FE9C221EE6CB300EABAA3 /* UsersListViewController.swift */,
+				858FE9C321EE6CB300EABAA3 /* UsersListInteractor.swift */,
+			);
+			path = UsersList;
+			sourceTree = "<group>";
+		};
+		851D379021EF2136001D5EC9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				85EDEA5E21EE179700BC4907 /* Assets.xcassets */,
+				85EDEA6021EE179700BC4907 /* LaunchScreen.storyboard */,
+				851D379321EF2150001D5EC9 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		85EDEA4921EE179500BC4907 = {
 			isa = PBXGroup;
 			children = (
@@ -50,9 +97,9 @@
 		85EDEA5421EE179500BC4907 /* UsersListApp */ = {
 			isa = PBXGroup;
 			children = (
+				851D379021EF2136001D5EC9 /* Resources */,
+				851D378B21EF1565001D5EC9 /* Scenes */,
 				85EDEA5521EE179500BC4907 /* AppDelegate.swift */,
-				85EDEA5E21EE179700BC4907 /* Assets.xcassets */,
-				85EDEA6021EE179700BC4907 /* LaunchScreen.storyboard */,
 				85EDEA6321EE179700BC4907 /* Info.plist */,
 			);
 			path = UsersListApp;
@@ -117,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85EDEA6221EE179700BC4907 /* LaunchScreen.storyboard in Resources */,
+				851D379121EF2150001D5EC9 /* Localizable.strings in Resources */,
 				85EDEA5F21EE179700BC4907 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,16 +177,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				85EDEA5621EE179500BC4907 /* AppDelegate.swift in Sources */,
+				858FE9C421EE6CB300EABAA3 /* UsersListPresenter.swift in Sources */,
+				858FE9C521EE6CB300EABAA3 /* UsersListWorker.swift in Sources */,
+				858FE9C921EE6CB300EABAA3 /* UsersListInteractor.swift in Sources */,
+				858FE9C621EE6CB300EABAA3 /* UsersListRouter.swift in Sources */,
+				858FE9C721EE6CB300EABAA3 /* UsersListModels.swift in Sources */,
+				858FE9C821EE6CB300EABAA3 /* UsersListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		851D379321EF2150001D5EC9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				851D379221EF2150001D5EC9 /* ru */,
+				851D379421EF21BD001D5EC9 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		85EDEA6021EE179700BC4907 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				85EDEA6121EE179700BC4907 /* Base */,
+				851D378D21EF20A0001D5EC9 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -150,6 +214,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -211,6 +276,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
