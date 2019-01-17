@@ -9,12 +9,15 @@
 import UIKit
 
 protocol UsersListDisplayLogic: class {
-    func displaySomething(viewModel: UsersList.Something.ViewModel)
+    func displayFetchedUsers(viewModel: UsersList.FetchUsers.ViewModel)
 }
 
-class UsersListViewController: UIViewController, UsersListDisplayLogic {
+final class UsersListViewController: UIViewController, UsersListDisplayLogic, UITableViewDataSource, UITableViewDelegate {
+    private let userCellIdentifier = "UserCell"
+    var usersTable = UITableView()
     var interactor: UsersListBusinessLogic?
     var router: (NSObjectProtocol & UsersListRoutingLogic & UsersListDataPassing)?
+    var displayedUsers: [UsersList.FetchUsers.ViewModel.DisplayedUser] = []
     
     // MARK: Object lifecycle
     
@@ -46,35 +49,28 @@ class UsersListViewController: UIViewController, UsersListDisplayLogic {
     
     // MARK: Routing
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
     }
     
     // MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
+        fetchUsers()
     }
     
-    // MARK: Do something
+    // MARK: Fetch users
     
-    //@IBOutlet weak var nameTextField: UITextField!
-    
-    func doSomething() {
-        let request = UsersList.Something.Request()
-        interactor?.doSomething(request: request)
+    func fetchUsers() {
+        let page = interactor?.requestPage ?? 0 + 1
+        let request = UsersList.FetchUsers.Request(resultCount: 20, page: page)
+        interactor?.fetchUsers(request: request)
     }
     
-    func displaySomething(viewModel: UsersList.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
+    func displayFetchedUsers(viewModel: UsersList.FetchUsers.ViewModel) {
+        displayedUsers.append(contentsOf: viewModel.displayedUsers)
+        reloadTable()
     }
-    
     
     // MARK: View Layout
     
@@ -82,5 +78,42 @@ class UsersListViewController: UIViewController, UsersListDisplayLogic {
         self.title = NSLocalizedString("Users", comment: "")
         self.tabBarItem.image = UIImage(named: "tab_users")
         self.tabBarItem.selectedImage = UIImage(named: "tab_users_active")
+        setupUsersTable()
+    }
+    
+    private func setupUsersTable() {
+        usersTable.register(UserCell.self, forCellReuseIdentifier: userCellIdentifier)
+        usersTable.dataSource = self
+        usersTable.delegate = self
+        usersTable.separatorColor = .gray
+        usersTable.rowHeight = 60
+        view.install(usersTable) { _ in
+            usersTable.pinTop(to: view)
+            usersTable.pinLeading(to: view)
+            usersTable.pinBottom(to: view)
+            usersTable.pinTrailing(to: view)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if (indexPath.row == displayedUsers.count - 1) {
+            fetchUsers()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return displayedUsers.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: userCellIdentifier, for: indexPath) as! UserCell
+        cell.configure(with: displayedUsers[indexPath.row])
+        return cell
+    }
+    
+    private func reloadTable() {
+        DispatchQueue.main.async {
+            self.usersTable.reloadData()
+        }
     }
 }

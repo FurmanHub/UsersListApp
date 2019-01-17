@@ -10,16 +10,21 @@
 import UIKit
 
 protocol UsersListPresentationLogic {
-    func presentSomething(response: UsersList.Something.Response)
+    func presentFetchedUsers(response: UsersList.FetchUsers.Response.UserResponse)
 }
 
-class UsersListPresenter: UsersListPresentationLogic {
+final class UsersListPresenter: UsersListPresentationLogic {
     weak var viewController: UsersListDisplayLogic?
     
-    // MARK: Do something
+    // MARK: Present users
     
-    func presentSomething(response: UsersList.Something.Response) {
-        let viewModel = UsersList.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func presentFetchedUsers(response: UsersList.FetchUsers.Response.UserResponse) {
+        var displayedUsers: [UsersList.FetchUsers.ViewModel.DisplayedUser] = []
+        for user in response.results {
+            let displayedUser = UsersList.FetchUsers.ViewModel.DisplayedUser(firstName: user.name.first, lastName: user.name.last, avatarUrl: user.avatar.medium, phoneNumber: user.phoneNumber)
+            displayedUsers.append(displayedUser)
+        }
+        let viewModel = UsersList.FetchUsers.ViewModel(displayedUsers: displayedUsers)
+        viewController?.displayFetchedUsers(viewModel: viewModel)
     }
 }

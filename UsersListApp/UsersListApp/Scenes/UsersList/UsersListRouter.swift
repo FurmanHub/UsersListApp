@@ -16,7 +16,7 @@ protocol UsersListDataPassing {
     var dataStore: UsersListDataStore? { get }
 }
 
-class UsersListRouter: NSObject, UsersListRoutingLogic, UsersListDataPassing {
+final class UsersListRouter: NSObject, UsersListRoutingLogic, UsersListDataPassing {
     weak var viewController: UsersListViewController?
     var dataStore: UsersListDataStore?
     
