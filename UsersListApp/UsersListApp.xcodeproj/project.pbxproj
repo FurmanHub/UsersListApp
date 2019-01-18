@@ -16,6 +16,11 @@
 		858FE9C721EE6CB300EABAA3 /* UsersListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FE9C121EE6CB300EABAA3 /* UsersListModels.swift */; };
 		858FE9C821EE6CB300EABAA3 /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FE9C221EE6CB300EABAA3 /* UsersListViewController.swift */; };
 		858FE9C921EE6CB300EABAA3 /* UsersListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FE9C321EE6CB300EABAA3 /* UsersListInteractor.swift */; };
+		85B5299321F1CC70005A936D /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 85B5299121F1CC70005A936D /* UserModel.xcdatamodeld */; };
+		85B5299821F1CDCA005A936D /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5299621F1CDCA005A936D /* User+CoreDataClass.swift */; };
+		85B5299921F1CDCA005A936D /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5299721F1CDCA005A936D /* User+CoreDataProperties.swift */; };
+		85B5299C21F1E8F5005A936D /* UsersStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5299B21F1E8F5005A936D /* UsersStorage.swift */; };
+		85B5299F21F1E97D005A936D /* CoreDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5299E21F1E97D005A936D /* CoreDataContainer.swift */; };
 		85E9542021F0B70100311322 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9541F21F0B70100311322 /* RoundedImageView.swift */; };
 		85EDEA5621EE179500BC4907 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EDEA5521EE179500BC4907 /* AppDelegate.swift */; };
 		85EDEA5F21EE179700BC4907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85EDEA5E21EE179700BC4907 /* Assets.xcassets */; };
@@ -43,6 +48,11 @@
 		858FE9C121EE6CB300EABAA3 /* UsersListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListModels.swift; sourceTree = "<group>"; };
 		858FE9C221EE6CB300EABAA3 /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
 		858FE9C321EE6CB300EABAA3 /* UsersListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListInteractor.swift; sourceTree = "<group>"; };
+		85B5299221F1CC70005A936D /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
+		85B5299621F1CDCA005A936D /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		85B5299721F1CDCA005A936D /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		85B5299B21F1E8F5005A936D /* UsersStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersStorage.swift; sourceTree = "<group>"; };
+		85B5299E21F1E97D005A936D /* CoreDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataContainer.swift; sourceTree = "<group>"; };
 		85E9541F21F0B70100311322 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		85EDEA5221EE179500BC4907 /* UsersListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsersListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EDEA5521EE179500BC4907 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +125,7 @@
 				85EDEA5E21EE179700BC4907 /* Assets.xcassets */,
 				85EDEA6021EE179700BC4907 /* LaunchScreen.storyboard */,
 				851D379321EF2150001D5EC9 /* Localizable.strings */,
+				85B5299121F1CC70005A936D /* UserModel.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -143,9 +154,44 @@
 		8524C51921EF603B00C155C1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				85B5299D21F1E967005A936D /* CoreDataStack */,
+				85B5299A21F1E8E2005A936D /* Storages */,
 				8524C51A21EF605100C155C1 /* APIRequest.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		85B5299421F1CD77005A936D /* CoreDataEntities */ = {
+			isa = PBXGroup;
+			children = (
+				85B5299721F1CDCA005A936D /* User+CoreDataProperties.swift */,
+				85B5299621F1CDCA005A936D /* User+CoreDataClass.swift */,
+			);
+			path = CoreDataEntities;
+			sourceTree = "<group>";
+		};
+		85B5299521F1CD91005A936D /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				85F6A39D21EF528400257203 /* User.swift */,
+			);
+			path = DTOs;
+			sourceTree = "<group>";
+		};
+		85B5299A21F1E8E2005A936D /* Storages */ = {
+			isa = PBXGroup;
+			children = (
+				85B5299B21F1E8F5005A936D /* UsersStorage.swift */,
+			);
+			path = Storages;
+			sourceTree = "<group>";
+		};
+		85B5299D21F1E967005A936D /* CoreDataStack */ = {
+			isa = PBXGroup;
+			children = (
+				85B5299E21F1E97D005A936D /* CoreDataContainer.swift */,
+			);
+			path = CoreDataStack;
 			sourceTree = "<group>";
 		};
 		85E9541C21F0B68500311322 /* Extensions */ = {
@@ -199,7 +245,8 @@
 		85F6A39C21EF527800257203 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				85F6A39D21EF528400257203 /* User.swift */,
+				85B5299521F1CD91005A936D /* DTOs */,
+				85B5299421F1CD77005A936D /* CoreDataEntities */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -330,15 +377,20 @@
 				858FE9C421EE6CB300EABAA3 /* UsersListPresenter.swift in Sources */,
 				85F6A39621EF480600257203 /* LayoutObject.swift in Sources */,
 				85F6A39521EF480600257203 /* UIView+Install.swift in Sources */,
+				85B5299821F1CDCA005A936D /* User+CoreDataClass.swift in Sources */,
 				85F6A39821EF480600257203 /* LayoutObject+Pinning.swift in Sources */,
 				8524C51D21EF60AD00C155C1 /* Result.swift in Sources */,
 				858FE9C521EE6CB300EABAA3 /* UsersListWorker.swift in Sources */,
+				85B5299921F1CDCA005A936D /* User+CoreDataProperties.swift in Sources */,
+				85B5299F21F1E97D005A936D /* CoreDataContainer.swift in Sources */,
 				85F6A39721EF480600257203 /* UIView+LayoutObject.swift in Sources */,
 				8524C51B21EF605100C155C1 /* APIRequest.swift in Sources */,
 				858FE9C921EE6CB300EABAA3 /* UsersListInteractor.swift in Sources */,
 				85F6A39B21EF495600257203 /* UserCell.swift in Sources */,
 				858FE9C621EE6CB300EABAA3 /* UsersListRouter.swift in Sources */,
+				85B5299C21F1E8F5005A936D /* UsersStorage.swift in Sources */,
 				858FE9C721EE6CB300EABAA3 /* UsersListModels.swift in Sources */,
+				85B5299321F1CC70005A936D /* UserModel.xcdatamodeld in Sources */,
 				858FE9C821EE6CB300EABAA3 /* UsersListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,6 +597,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		85B5299121F1CC70005A936D /* UserModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				85B5299221F1CC70005A936D /* UserModel.xcdatamodel */,
+			);
+			currentVersion = 85B5299221F1CC70005A936D /* UserModel.xcdatamodel */;
+			path = UserModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 85EDEA4A21EE179500BC4907 /* Project object */;
 }

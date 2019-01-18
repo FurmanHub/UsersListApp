@@ -22,21 +22,25 @@ final class UsersListInteractor: UsersListBusinessLogic, UsersListDataStore {
     var users: [User]?
     
     var presenter: UsersListPresentationLogic?
-    var worker: UsersListWorker?
+    var worker = UsersListWorker()
     var isLoading = false
     
     // MARK: Fetch users
     
     func fetchUsers(request: UsersList.FetchUsers.Request) {
         guard isLoading == false else { return }
-        worker = UsersListWorker()
         isLoading = true
-        worker?.executeRequest(request: request) { [weak self] (result: Result<UsersList.FetchUsers.Response.UserResponse>) in
+        worker.executeRequest(request: request) { [weak self] (result: Result<UsersList.FetchUsers.Response.UserResponse>) in
             guard let `self` = self else { return }
             self.isLoading = false
             if let fetchResponse = result.value {
                 self.presenter?.presentFetchedUsers(response: fetchResponse)
                 self.requestPage = fetchResponse.info.page
+                do {
+                    try self.worker.saveUsers(users: fetchResponse.results)
+                } catch {
+                    print("Error with saving in UsersListInteractor")
+                }
             } else {
                 print(result.error?.localizedDescription ?? "Unexpected error")
             }

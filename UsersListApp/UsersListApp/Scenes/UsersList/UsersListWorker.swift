@@ -16,6 +16,11 @@ final class UsersListWorker {
     }
     
     private let session = URLSession(configuration: .default)
+    private let usersStorage = UsersStorage(coreData: CoreDataContainer())
+    
+    func saveUsers(users: [User]) throws {
+        try usersStorage.saveUsers(users: users)
+    }
     
     func executeRequest<T: APIRequest, U> (request: T, completion: @escaping (Result<U>) -> Void) where T.ResponseType == U {
         guard let url = construct(from: request) else {
