@@ -21,6 +21,12 @@
 		85B5299921F1CDCA005A936D /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5299721F1CDCA005A936D /* User+CoreDataProperties.swift */; };
 		85B5299C21F1E8F5005A936D /* UsersStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5299B21F1E8F5005A936D /* UsersStorage.swift */; };
 		85B5299F21F1E97D005A936D /* CoreDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B5299E21F1E97D005A936D /* CoreDataContainer.swift */; };
+		85B529A721F1F71B005A936D /* SavedUsersListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B529A121F1F71B005A936D /* SavedUsersListPresenter.swift */; };
+		85B529A821F1F71B005A936D /* SavedUsersListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B529A221F1F71B005A936D /* SavedUsersListWorker.swift */; };
+		85B529A921F1F71B005A936D /* SavedUsersListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B529A321F1F71B005A936D /* SavedUsersListRouter.swift */; };
+		85B529AA21F1F71B005A936D /* SavedUsersListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B529A421F1F71B005A936D /* SavedUsersListModels.swift */; };
+		85B529AB21F1F71B005A936D /* SavedUsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B529A521F1F71B005A936D /* SavedUsersListViewController.swift */; };
+		85B529AC21F1F71B005A936D /* SavedUsersListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B529A621F1F71B005A936D /* SavedUsersListInteractor.swift */; };
 		85E9542021F0B70100311322 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E9541F21F0B70100311322 /* RoundedImageView.swift */; };
 		85EDEA5621EE179500BC4907 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EDEA5521EE179500BC4907 /* AppDelegate.swift */; };
 		85EDEA5F21EE179700BC4907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85EDEA5E21EE179700BC4907 /* Assets.xcassets */; };
@@ -53,6 +59,12 @@
 		85B5299721F1CDCA005A936D /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		85B5299B21F1E8F5005A936D /* UsersStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersStorage.swift; sourceTree = "<group>"; };
 		85B5299E21F1E97D005A936D /* CoreDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataContainer.swift; sourceTree = "<group>"; };
+		85B529A121F1F71B005A936D /* SavedUsersListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedUsersListPresenter.swift; sourceTree = "<group>"; };
+		85B529A221F1F71B005A936D /* SavedUsersListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedUsersListWorker.swift; sourceTree = "<group>"; };
+		85B529A321F1F71B005A936D /* SavedUsersListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedUsersListRouter.swift; sourceTree = "<group>"; };
+		85B529A421F1F71B005A936D /* SavedUsersListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedUsersListModels.swift; sourceTree = "<group>"; };
+		85B529A521F1F71B005A936D /* SavedUsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedUsersListViewController.swift; sourceTree = "<group>"; };
+		85B529A621F1F71B005A936D /* SavedUsersListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedUsersListInteractor.swift; sourceTree = "<group>"; };
 		85E9541F21F0B70100311322 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		85EDEA5221EE179500BC4907 /* UsersListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsersListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EDEA5521EE179500BC4907 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +112,7 @@
 		851D378B21EF1565001D5EC9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				85B529A021F1F6B9005A936D /* SaveUsersList */,
 				85F6A39921EF48EA00257203 /* Cells */,
 				851D378C21EF156C001D5EC9 /* UsersList */,
 			);
@@ -192,6 +205,19 @@
 				85B5299E21F1E97D005A936D /* CoreDataContainer.swift */,
 			);
 			path = CoreDataStack;
+			sourceTree = "<group>";
+		};
+		85B529A021F1F6B9005A936D /* SaveUsersList */ = {
+			isa = PBXGroup;
+			children = (
+				85B529A121F1F71B005A936D /* SavedUsersListPresenter.swift */,
+				85B529A221F1F71B005A936D /* SavedUsersListWorker.swift */,
+				85B529A321F1F71B005A936D /* SavedUsersListRouter.swift */,
+				85B529A421F1F71B005A936D /* SavedUsersListModels.swift */,
+				85B529A521F1F71B005A936D /* SavedUsersListViewController.swift */,
+				85B529A621F1F71B005A936D /* SavedUsersListInteractor.swift */,
+			);
+			path = SaveUsersList;
 			sourceTree = "<group>";
 		};
 		85E9541C21F0B68500311322 /* Extensions */ = {
@@ -376,6 +402,7 @@
 				85EDEA5621EE179500BC4907 /* AppDelegate.swift in Sources */,
 				858FE9C421EE6CB300EABAA3 /* UsersListPresenter.swift in Sources */,
 				85F6A39621EF480600257203 /* LayoutObject.swift in Sources */,
+				85B529AB21F1F71B005A936D /* SavedUsersListViewController.swift in Sources */,
 				85F6A39521EF480600257203 /* UIView+Install.swift in Sources */,
 				85B5299821F1CDCA005A936D /* User+CoreDataClass.swift in Sources */,
 				85F6A39821EF480600257203 /* LayoutObject+Pinning.swift in Sources */,
@@ -386,12 +413,17 @@
 				85F6A39721EF480600257203 /* UIView+LayoutObject.swift in Sources */,
 				8524C51B21EF605100C155C1 /* APIRequest.swift in Sources */,
 				858FE9C921EE6CB300EABAA3 /* UsersListInteractor.swift in Sources */,
+				85B529A821F1F71B005A936D /* SavedUsersListWorker.swift in Sources */,
 				85F6A39B21EF495600257203 /* UserCell.swift in Sources */,
 				858FE9C621EE6CB300EABAA3 /* UsersListRouter.swift in Sources */,
+				85B529AC21F1F71B005A936D /* SavedUsersListInteractor.swift in Sources */,
 				85B5299C21F1E8F5005A936D /* UsersStorage.swift in Sources */,
 				858FE9C721EE6CB300EABAA3 /* UsersListModels.swift in Sources */,
 				85B5299321F1CC70005A936D /* UserModel.xcdatamodeld in Sources */,
 				858FE9C821EE6CB300EABAA3 /* UsersListViewController.swift in Sources */,
+				85B529AA21F1F71B005A936D /* SavedUsersListModels.swift in Sources */,
+				85B529A721F1F71B005A936D /* SavedUsersListPresenter.swift in Sources */,
+				85B529A921F1F71B005A936D /* SavedUsersListRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
