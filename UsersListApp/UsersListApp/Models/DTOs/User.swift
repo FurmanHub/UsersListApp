@@ -13,12 +13,14 @@ final class User: Decodable {
     let avatar: UserAvatar
     let phoneNumber: String
     let email: String
+    let userID: UserID
     
-    init(name: UserName, avatar: UserAvatar, phoneNumber: String, email: String) {
+    init(name: UserName, avatar: UserAvatar, phoneNumber: String, email: String, id: UserID) {
         self.name = name
         self.avatar = avatar
         self.phoneNumber = phoneNumber
         self.email = email
+        self.userID = id
     }
     
     struct UserName: Decodable {
@@ -29,10 +31,15 @@ final class User: Decodable {
         var medium: URL
     }
     
+    struct UserID: Decodable {
+        var uuid: String
+    }
+    
     enum CodingKeys: String, CodingKey {
         case name = "name"
         case avatar = "picture"
         case phoneNumber = "phone"
         case email = "email"
+        case userID = "login"
     }
 }

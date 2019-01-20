@@ -20,6 +20,7 @@ enum SavedUsersList {
                 var lastName: String
                 var avatarUrl: URL
                 var phoneNumber: String
+                var id: String
             }
             var displayedUsers: [DisplayedUser]
         }

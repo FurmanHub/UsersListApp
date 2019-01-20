@@ -20,7 +20,7 @@ final class SavedUsersListPresenter: SavedUsersListPresentationLogic {
     func presentSavedUsers(users: [User]) {
         var displayedUsers: [SavedUsersList.fetchSavedUsers.ViewModel.DisplayedUser] = []
         for user in users {
-            let displayedUser = SavedUsersList.fetchSavedUsers.ViewModel.DisplayedUser(firstName: user.name.first, lastName: user.name.last, avatarUrl: user.avatar.medium, phoneNumber: user.phoneNumber)
+            let displayedUser = SavedUsersList.fetchSavedUsers.ViewModel.DisplayedUser(firstName: user.name.first, lastName: user.name.last, avatarUrl: user.avatar.medium, phoneNumber: user.phoneNumber, id: user.userID.uuid)
             displayedUsers.append(displayedUser)
         }
         let viewModel = SavedUsersList.fetchSavedUsers.ViewModel(displayedUsers: displayedUsers)

@@ -10,6 +10,7 @@ import UIKit
 
 protocol SavedUsersListBusinessLogic {
     func fetchUsersFromLocalDB()
+    func removeUserFormLocalDB(by id: String)
 }
 
 protocol SavedUsersListDataStore {
@@ -25,5 +26,9 @@ final class SavedUsersListInteractor: SavedUsersListBusinessLogic, SavedUsersLis
     func fetchUsersFromLocalDB() {
         let fetchedUsers = worker.fetchUsers()
         presenter?.presentSavedUsers(users: fetchedUsers)
+    }
+    
+    func removeUserFormLocalDB(by id: String) {
+        worker.removeUser(by: id)
     }
 }

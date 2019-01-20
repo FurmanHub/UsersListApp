@@ -14,4 +14,8 @@ final class SavedUsersListWorker {
     func fetchUsers() -> [User] {
         return usersStorage.fetchUsers()
     }
+    
+    func removeUser(by id: String) {
+        usersStorage.removeUser(by: id)
+    }
 }
