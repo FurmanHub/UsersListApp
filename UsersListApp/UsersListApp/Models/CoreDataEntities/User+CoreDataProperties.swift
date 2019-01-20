@@ -21,5 +21,6 @@ extension UserMO {
     @NSManaged public var email: String?
     @NSManaged public var phoneNumber: String?
     @NSManaged public var avatarUrl: String?
+    @NSManaged public var id: String?
 
 }

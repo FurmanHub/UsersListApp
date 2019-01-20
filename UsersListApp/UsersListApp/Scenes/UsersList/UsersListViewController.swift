@@ -14,10 +14,10 @@ protocol UsersListDisplayLogic: class {
 
 final class UsersListViewController: UIViewController, UsersListDisplayLogic, UITableViewDataSource, UITableViewDelegate {
     private let userCellIdentifier = "UserCell"
-    var usersTable = UITableView()
-    var interactor: UsersListBusinessLogic?
-    var router: (NSObjectProtocol & UsersListRoutingLogic & UsersListDataPassing)?
-    var displayedUsers: [UsersList.FetchUsers.ViewModel.DisplayedUser] = []
+    private let usersTable = UITableView()
+    private var interactor: UsersListBusinessLogic?
+    private var router: (NSObjectProtocol & UsersListRoutingLogic & UsersListDataPassing)?
+    private var displayedUsers: [UsersList.FetchUsers.ViewModel.DisplayedUser] = []
     
     // MARK: Object lifecycle
     
@@ -61,7 +61,7 @@ final class UsersListViewController: UIViewController, UsersListDisplayLogic, UI
     
     // MARK: Fetch users
     
-    func fetchUsers() {
+    private func fetchUsers() {
         let page = interactor?.requestPage ?? 0 + 1
         let request = UsersList.FetchUsers.Request(resultCount: 20, page: page)
         interactor?.fetchUsers(request: request)

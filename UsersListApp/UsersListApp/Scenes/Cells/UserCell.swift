@@ -38,6 +38,14 @@ final class UserCell: UITableViewCell {
         userAvatar.kf.setImage(with: user.avatarUrl)
     }
     
+    func configure(with user: SavedUsersList.fetchSavedUsers.ViewModel.DisplayedUser) {
+        self.accessoryType = .disclosureIndicator
+        firstNameLabel.text = user.firstName
+        lastNameLabel.text = user.lastName
+        phoneNumberLabel.text = user.phoneNumber
+        userAvatar.kf.setImage(with: user.avatarUrl)
+    }
+    
     private func setupAvatar() {
         contentView.install(userAvatar) { _ in
             userAvatar.pinCenterY(to: contentView)

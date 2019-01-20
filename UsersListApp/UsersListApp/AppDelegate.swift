@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let tabbarController = UITabBarController()
         let usersListNavController = UINavigationController(rootViewController: UsersListViewController())
-        let savedUsersListNavController = UINavigationController(rootViewController: UIViewController())
+        let savedUsersListNavController = UINavigationController(rootViewController: SavedUsersListViewController())
         tabbarController.setViewControllers([usersListNavController, savedUsersListNavController], animated: false)
         tabbarController.tabBar.barStyle = .default
         window!.rootViewController = tabbarController
