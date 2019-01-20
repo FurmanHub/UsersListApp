@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SavedUsersListBusinessLogic {
-    func doSomething(request: SavedUsersList.Something.Request)
+    func fetchUsersFromLocalDB()
 }
 
 protocol SavedUsersListDataStore {
@@ -18,15 +18,12 @@ protocol SavedUsersListDataStore {
 
 final class SavedUsersListInteractor: SavedUsersListBusinessLogic, SavedUsersListDataStore {
     var presenter: SavedUsersListPresentationLogic?
-    var worker: SavedUsersListWorker?
+    private let worker = SavedUsersListWorker()
     
     // MARK: Do something
     
-    func doSomething(request: SavedUsersList.Something.Request) {
-        worker = SavedUsersListWorker()
-        worker?.doSomeWork()
-        
-        let response = SavedUsersList.Something.Response()
-        presenter?.presentSomething(response: response)
+    func fetchUsersFromLocalDB() {
+        let fetchedUsers = worker.fetchUsers()
+        presenter?.presentSavedUsers(users: fetchedUsers)
     }
 }

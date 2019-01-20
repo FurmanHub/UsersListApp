@@ -22,8 +22,8 @@ final class UsersListInteractor: UsersListBusinessLogic, UsersListDataStore {
     var users: [User]?
     
     var presenter: UsersListPresentationLogic?
-    var worker = UsersListWorker()
-    var isLoading = false
+    private var worker = UsersListWorker()
+    private var isLoading = false
     
     // MARK: Fetch users
     

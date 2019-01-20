@@ -9,16 +9,21 @@
 import UIKit
 
 protocol SavedUsersListPresentationLogic {
-    func presentSomething(response: SavedUsersList.Something.Response)
+    func presentSavedUsers(users: [User])
 }
 
 final class SavedUsersListPresenter: SavedUsersListPresentationLogic {
     weak var viewController: SavedUsersListDisplayLogic?
     
-    // MARK: Do something
+    // MARK: Present saved users
     
-    func presentSomething(response: SavedUsersList.Something.Response) {
-        let viewModel = SavedUsersList.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func presentSavedUsers(users: [User]) {
+        var displayedUsers: [SavedUsersList.fetchSavedUsers.ViewModel.DisplayedUser] = []
+        for user in users {
+            let displayedUser = SavedUsersList.fetchSavedUsers.ViewModel.DisplayedUser(firstName: user.name.first, lastName: user.name.last, avatarUrl: user.avatar.medium, phoneNumber: user.phoneNumber)
+            displayedUsers.append(displayedUser)
+        }
+        let viewModel = SavedUsersList.fetchSavedUsers.ViewModel(displayedUsers: displayedUsers)
+        viewController?.displaySavedUsers(viewModel: viewModel)
     }
 }

@@ -9,14 +9,15 @@
 import UIKit
 
 protocol SavedUsersListDisplayLogic: class {
-    func displaySomething(viewModel: SavedUsersList.Something.ViewModel)
+    func displaySavedUsers(viewModel: SavedUsersList.fetchSavedUsers.ViewModel)
 }
 
 class SavedUsersListViewController: UIViewController, SavedUsersListDisplayLogic, UITableViewDelegate, UITableViewDataSource {
-    var interactor: SavedUsersListBusinessLogic?
-    var router: (NSObjectProtocol & SavedUsersListRoutingLogic & SavedUsersListDataPassing)?
+    private var interactor: SavedUsersListBusinessLogic?
+    private var router: (NSObjectProtocol & SavedUsersListRoutingLogic & SavedUsersListDataPassing)?
     private let userCellIdentifier = "UserCell"
-    var savedUsersTable = UITableView()
+    private let savedUsersTable = UITableView()
+    private var displayedSavedUsers: [SavedUsersList.fetchSavedUsers.ViewModel.DisplayedUser] = []
     
     // MARK: Object lifecycle
     
@@ -51,20 +52,20 @@ class SavedUsersListViewController: UIViewController, SavedUsersListDisplayLogic
     
     // MARK: View lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        doSomething()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchSavedUsers()
     }
     
-    // MARK: Do something
+    // MARK: Fetch saved users from local database
     
-    func doSomething() {
-        let request = SavedUsersList.Something.Request()
-        interactor?.doSomething(request: request)
+    func fetchSavedUsers() {
+        interactor?.fetchUsersFromLocalDB()
     }
     
-    func displaySomething(viewModel: SavedUsersList.Something.ViewModel) {
-        
+    func displaySavedUsers(viewModel: SavedUsersList.fetchSavedUsers.ViewModel) {
+        displayedSavedUsers = viewModel.displayedUsers
+        reloadTable()
     }
     
     // MARK: View Layout
@@ -91,12 +92,12 @@ class SavedUsersListViewController: UIViewController, SavedUsersListDisplayLogic
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return displayedSavedUsers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: userCellIdentifier, for: indexPath) as! UserCell
-//        cell.configure(with: displayedUsers[indexPath.row])
+        cell.configure(with: displayedSavedUsers[indexPath.row])
         return cell
     }
     

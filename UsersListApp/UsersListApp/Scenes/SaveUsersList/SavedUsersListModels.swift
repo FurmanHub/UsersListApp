@@ -9,14 +9,19 @@
 import UIKit
 
 enum SavedUsersList {
-    // MARK: Use cases
-    
-    enum Something {
+    enum fetchSavedUsers {
         struct Request {
         }
         struct Response {
         }
         struct ViewModel {
+            struct DisplayedUser {
+                var firstName: String
+                var lastName: String
+                var avatarUrl: URL
+                var phoneNumber: String
+            }
+            var displayedUsers: [DisplayedUser]
         }
     }
 }

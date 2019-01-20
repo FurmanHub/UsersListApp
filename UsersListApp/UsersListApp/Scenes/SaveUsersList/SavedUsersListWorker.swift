@@ -9,6 +9,9 @@
 import UIKit
 
 final class SavedUsersListWorker {
-    func doSomeWork() {
+    private let usersStorage = UsersStorage(coreData: CoreDataContainer())
+    
+    func fetchUsers() -> [User] {
+        return usersStorage.fetchUsers()
     }
 }
