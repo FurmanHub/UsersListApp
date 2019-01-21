@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  UsersListApp
+
+  Created by Fedya on 1/16/19.
+  Copyright © 2019 Fedya. All rights reserved.
+*/
+
+"Users" = "Пользователи";
+"Saved" = "Сохраненные пользователи";
+"Edit user profile" = "Редактировать профиль пользователя";
+"Change photo" = "Изменить фото";
