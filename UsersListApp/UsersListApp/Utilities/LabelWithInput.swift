@@ -33,6 +33,7 @@ final class LabelWithInput: UIView, UITextFieldDelegate {
     
     func enablePhoneFormatting() {
         inputField.delegate = self
+        inputField.keyboardType = .phonePad
     }
     
     private func setup() {
@@ -71,7 +72,6 @@ final class LabelWithInput: UIView, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let length = Int(getLength(mobileNumber: textField.text!))
-        
         if length == 15 {
             if range.length == 0 {
                 return false
@@ -79,9 +79,7 @@ final class LabelWithInput: UIView, UITextFieldDelegate {
         }
         
         if length == 3 {
-            
             let num = self.formatNumber(mobileNumber: textField.text!)
-            
             textField.text = NSString(format:"(%@)",num) as String
             
             if range.length > 0 {
@@ -98,7 +96,11 @@ final class LabelWithInput: UIView, UITextFieldDelegate {
                 textField.text = NSString(format:"(%@) %@",num.substring(to: index), num.substring(from: index)) as String
             }
         }
-        return true
+        
+        let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
+        let compSepByCharInSet = string.components(separatedBy: aSet)
+        let numberFiltered = compSepByCharInSet.joined(separator: "")
+        return string == numberFiltered
     }
     
     private func formatNumber(mobileNumber: String) -> String {
@@ -127,8 +129,5 @@ final class LabelWithInput: UIView, UITextFieldDelegate {
         number = number.replacingOccurrences(of: "+", with: "")
         let length = Int(number.characters.count)
         return length
-        
     }
-    
-    
 }
