@@ -27,7 +27,6 @@ class EditUserProfileInteractor: EditUserProfileBusinessLogic, EditUserProfileDa
         do {
             try worker?.updateUser(user: user)
         } catch {
-            print("Cannot update user")
             throw NSError(domain: "", code: 1, userInfo: [:])
         }
     }

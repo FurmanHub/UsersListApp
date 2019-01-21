@@ -23,25 +23,25 @@ final class EditUserProfileWorker {
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
     }
     
-    private func validateData(user: User) throws -> Bool {
+    private func validateData(user: User) -> Bool {
         let firstName = user.name.first
         let lastName = user.name.last
         guard firstName.count > 0 && firstName.count < 31 else {
-            throw ValidateUserError.invalidFirstName
+            return false
         }
         guard lastName.count > 0 && lastName.count < 31 else {
-            throw ValidateUserError.invalidLastName
+            return false
         }
         guard validateEmail(candidate: user.email) else {
-            throw ValidateUserError.invalidEmail
+            return false
         }
         do {
-            let regex = try NSRegularExpression(pattern: ".*[^A-Za-z0-9].*", options: [])
+            let regex = try NSRegularExpression(pattern: ".*[^A-Za-z].*", options: [])
             if regex.firstMatch(in: firstName, options: [], range: NSMakeRange(0, firstName.count)) != nil {
-                throw ValidateUserError.invalidFirstName
+                return false
             }
             if regex.firstMatch(in: lastName, options: [], range: NSMakeRange(0, lastName.count)) != nil {
-                throw ValidateUserError.invalidLastName
+                return false
             }
         } catch {
             print("Some error while validation")
@@ -49,19 +49,14 @@ final class EditUserProfileWorker {
         return true
     }
     
+    // Have no time to improve error handling(
     func updateUser(user: User) throws {
+        guard validateData(user: user) == true else {
+            throw NSError(domain: "", code: 2, userInfo: [:])
+        }
         do {
-            guard try validateData(user: user) else { return }
             try usersStorage.updateUser(user: user)
-        } catch ValidateUserError.invalidFirstName {
-            print("Invalid first name")
-            throw ValidateUserError.invalidFirstName
-        } catch ValidateUserError.invalidLastName {
-            print("Invalid last name")
-            throw ValidateUserError.invalidLastName
-        } catch ValidateUserError.invalidEmail {
-            print("Invalid email")
-            throw ValidateUserError.invalidEmail
+        } catch {
         }
     }
 }
