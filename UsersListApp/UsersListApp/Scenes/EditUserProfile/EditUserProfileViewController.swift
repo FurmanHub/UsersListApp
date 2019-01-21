@@ -8,13 +8,9 @@
 
 import UIKit
 
-protocol EditUserProfileDisplayLogic: class {
-//    func displaySomething(viewModel: EditUserProfile.Something.ViewModel)
-}
-
-final class EditUserProfileViewController: UIViewController, EditUserProfileDisplayLogic, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+final class EditUserProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var interactor: EditUserProfileBusinessLogic?
-    var router: (NSObjectProtocol & EditUserProfileRoutingLogic & EditUserProfileDataPassing)?
+    var router: (NSObjectProtocol & EditUserProfileDataPassing)?
     private let userAvatar = RoundedImageView()
     private let changeAvatarBtn = UIButton()
     private var firstNameField: LabelWithInput?
@@ -40,12 +36,9 @@ final class EditUserProfileViewController: UIViewController, EditUserProfileDisp
     private func setup() {
         let viewController = self
         let interactor = EditUserProfileInteractor()
-        let presenter = EditUserProfilePresenter()
         let router = EditUserProfileRouter()
         viewController.interactor = interactor
         viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
         imagePicker.delegate = self
@@ -155,6 +148,7 @@ final class EditUserProfileViewController: UIViewController, EditUserProfileDisp
     
     // MARK: Save user profile
     
+    // Input placeholder can be used instead inputText for update only some "rows"
     @objc private func saveUserProfile() {
         let firstName = firstNameField?.inputText
         let lastName = lastNameField?.inputText

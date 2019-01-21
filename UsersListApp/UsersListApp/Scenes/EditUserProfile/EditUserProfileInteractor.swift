@@ -18,14 +18,10 @@ protocol EditUserProfileDataStore {
 
 class EditUserProfileInteractor: EditUserProfileBusinessLogic, EditUserProfileDataStore {
     var user: User?
-    var presenter: EditUserProfilePresentationLogic?
     var worker: EditUserProfileWorker?
     
-    
     // MARK: update user
-    
 
-    
     func updateUserInLocalDB(user: User) throws {
         worker = EditUserProfileWorker()
         do {

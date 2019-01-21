@@ -22,6 +22,8 @@ final class UsersListWorker {
         try usersStorage.saveUsers(users: users)
     }
     
+    // I think it's too complicated for this app with 1 request...
+    // Should be like separated service
     func executeRequest<T: APIRequest, U> (request: T, completion: @escaping (Result<U>) -> Void) where T.ResponseType == U {
         guard let url = construct(from: request) else {
             completion(Result.failure(APIError.malformedURL))

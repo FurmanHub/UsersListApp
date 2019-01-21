@@ -13,11 +13,7 @@ protocol SavedUsersListBusinessLogic {
     func removeUserFormLocalDB(by id: String)
 }
 
-protocol SavedUsersListDataStore {
-    
-}
-
-final class SavedUsersListInteractor: SavedUsersListBusinessLogic, SavedUsersListDataStore {
+final class SavedUsersListInteractor: SavedUsersListBusinessLogic {
     var presenter: SavedUsersListPresentationLogic?
     private let worker = SavedUsersListWorker()
     
