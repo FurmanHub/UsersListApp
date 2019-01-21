@@ -8,46 +8,29 @@
 
 import UIKit
 
-@objc protocol UsersListRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+protocol UsersListRoutingLogic {
+    func routeToEditProfile(user: User)
 }
 
-protocol UsersListDataPassing {
-    var dataStore: UsersListDataStore? { get }
-}
-
-final class UsersListRouter: NSObject, UsersListRoutingLogic, UsersListDataPassing {
+final class UsersListRouter: NSObject, UsersListRoutingLogic {
     weak var viewController: UsersListViewController?
-    var dataStore: UsersListDataStore?
     
-    // MARK: Routing
+//     MARK: Navigation
     
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
+    func navigateToEditUserProfile(source: UsersListViewController, destination: EditUserProfileViewController) {
+      source.show(destination, sender: nil)
+    }
     
-    // MARK: Navigation
+    func routeToEditProfile(user: User) {
+        let editUserProfileViewController = EditUserProfileViewController()
+        var destinationDS = editUserProfileViewController.router?.dataStore
+        passDataToEditProfileDataStore(user: user, destination: &destinationDS!)
+        navigateToEditUserProfile(source: viewController!, destination: editUserProfileViewController)
+    }
     
-    //func navigateToSomewhere(source: UsersListViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
+//     MARK: Passing data
     
-    // MARK: Passing data
-    
-    //func passDataToSomewhere(source: UsersListDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
+    func passDataToEditProfileDataStore(user: User, destination: inout EditUserProfileDataStore) {
+      destination.user = user
+    }
 }

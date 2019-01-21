@@ -28,7 +28,7 @@ final class User: Decodable {
         var last: String
     }
     struct UserAvatar: Decodable {
-        var medium: URL
+        var medium: String
     }
     
     struct UserID: Decodable {

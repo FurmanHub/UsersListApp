@@ -21,7 +21,7 @@ final class UsersListPresenter: UsersListPresentationLogic {
     func presentFetchedUsers(response: UsersList.FetchUsers.Response.UserResponse) {
         var displayedUsers: [UsersList.FetchUsers.ViewModel.DisplayedUser] = []
         for user in response.results {
-            let displayedUser = UsersList.FetchUsers.ViewModel.DisplayedUser(firstName: user.name.first, lastName: user.name.last, avatarUrl: user.avatar.medium, phoneNumber: user.phoneNumber)
+            let displayedUser = UsersList.FetchUsers.ViewModel.DisplayedUser(firstName: user.name.first, lastName: user.name.last, avatarUrl: user.avatar.medium, phoneNumber: user.phoneNumber, id: user.userID.uuid, email: user.email)
             displayedUsers.append(displayedUser)
         }
         let viewModel = UsersList.FetchUsers.ViewModel(displayedUsers: displayedUsers)

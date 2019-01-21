@@ -57,7 +57,7 @@ final class UsersStorage {
             let email = user.email
             let phoneNumber = user.phoneNumber
             let id = user.userID.uuid
-            try saveUser(firstName: firstName, lastName: lastName, avatarUrl: avatarUrl.absoluteString, email: email, phone: phoneNumber, id: id)
+            try saveUser(firstName: firstName, lastName: lastName, avatarUrl: avatarUrl, email: email, phone: phoneNumber, id: id)
         }
     }
     
@@ -70,7 +70,7 @@ final class UsersStorage {
             for user in result {
                 if let firstName = user.firstName, let lastName = user.lastName, let avatarUrl = user.avatarUrl, let phoneNumber = user.phoneNumber, let email = user.email, let id = user.id {
                     let userName = User.UserName.init(first: firstName, last: lastName)
-                    let userAvatar = User.UserAvatar.init(medium: URL(string: avatarUrl)!)
+                    let userAvatar = User.UserAvatar.init(medium: avatarUrl)
                     let userID = User.UserID.init(uuid: id)
                     users.append(User(name: userName, avatar: userAvatar, phoneNumber: phoneNumber, email: email, id: userID))
                 }
@@ -102,6 +102,24 @@ final class UsersStorage {
             try context.save()
         } catch {
             print("Error while removing user")
+        }
+    }
+    
+    func updateUser(user: User) throws {
+        let fetchRequest: NSFetchRequest<UserMO> = UserMO.userMOfetchRequest()
+        fetchRequest.predicate = NSPredicate.init(format: "id == %@", user.userID.uuid)
+        let fetchedUsers = try! context.fetch(fetchRequest)
+        for fetchedUser in fetchedUsers {
+            fetchedUser.setValue(user.name.first, forKey: "firstName")
+            fetchedUser.setValue(user.name.last, forKey: "lastName")
+            fetchedUser.setValue(user.avatar.medium, forKey: "avatarUrl")
+            fetchedUser.setValue(user.email, forKey: "email")
+            fetchedUser.setValue(user.phoneNumber, forKey: "phoneNumber")
+        }
+        do {
+            try context.save()
+        } catch {
+            throw UsersStorageErrors.invalidSave
         }
     }
 }

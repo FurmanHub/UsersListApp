@@ -10,17 +10,14 @@ import UIKit
 
 enum SavedUsersList {
     enum fetchSavedUsers {
-        struct Request {
-        }
-        struct Response {
-        }
         struct ViewModel {
             struct DisplayedUser {
                 var firstName: String
                 var lastName: String
-                var avatarUrl: URL
+                var avatarUrl: String
                 var phoneNumber: String
                 var id: String
+                var email: String
             }
             var displayedUsers: [DisplayedUser]
         }

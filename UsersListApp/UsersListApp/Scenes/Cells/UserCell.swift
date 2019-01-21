@@ -35,7 +35,12 @@ final class UserCell: UITableViewCell {
         firstNameLabel.text = user.firstName
         lastNameLabel.text = user.lastName
         phoneNumberLabel.text = user.phoneNumber
-        userAvatar.kf.setImage(with: user.avatarUrl)
+        if let avatarUrl = URL(string: user.avatarUrl) {
+            userAvatar.kf.setImage(with: avatarUrl)
+        } else {
+            let url = URL(fileURLWithPath: user.avatarUrl)
+            userAvatar.kf.setImage(with: url)
+        }
     }
     
     func configure(with user: SavedUsersList.fetchSavedUsers.ViewModel.DisplayedUser) {
@@ -43,7 +48,12 @@ final class UserCell: UITableViewCell {
         firstNameLabel.text = user.firstName
         lastNameLabel.text = user.lastName
         phoneNumberLabel.text = user.phoneNumber
-        userAvatar.kf.setImage(with: user.avatarUrl)
+        if let avatarUrl = URL(string: user.avatarUrl) {
+            userAvatar.kf.setImage(with: avatarUrl)
+        } else {
+            let url = URL(fileURLWithPath: user.avatarUrl)
+            userAvatar.kf.setImage(with: url)
+        }
     }
     
     private func setupAvatar() {

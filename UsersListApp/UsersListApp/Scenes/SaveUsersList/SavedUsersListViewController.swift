@@ -14,7 +14,7 @@ protocol SavedUsersListDisplayLogic: class {
 
 class SavedUsersListViewController: UIViewController, SavedUsersListDisplayLogic, UITableViewDelegate, UITableViewDataSource {
     private var interactor: SavedUsersListBusinessLogic?
-    private var router: (NSObjectProtocol & SavedUsersListRoutingLogic & SavedUsersListDataPassing)?
+    private var router: (NSObjectProtocol & SavedUsersListRoutingLogic)?
     private let userCellIdentifier = "UserCell"
     private let savedUsersTable = UITableView()
     private var displayedSavedUsers: [SavedUsersList.fetchSavedUsers.ViewModel.DisplayedUser] = []
@@ -43,12 +43,19 @@ class SavedUsersListViewController: UIViewController, SavedUsersListDisplayLogic
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController
-        router.dataStore = interactor
         setupUI()
     }
     
     // MARK: Routing
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let savedUser = displayedSavedUsers[indexPath.row]
+        let userName = User.UserName.init(first: savedUser.firstName, last: savedUser.lastName)
+        let userAvatar = User.UserAvatar.init(medium: savedUser.avatarUrl)
+        let userID = User.UserID.init(uuid: savedUser.id)
+        let user = User(name: userName, avatar: userAvatar, phoneNumber: savedUser.phoneNumber, email: savedUser.email, id: userID)
+        router?.routeToEditProfile(user: user)
+    }
     
     // MARK: View lifecycle
     

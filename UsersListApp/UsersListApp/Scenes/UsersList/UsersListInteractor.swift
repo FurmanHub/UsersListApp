@@ -35,6 +35,7 @@ final class UsersListInteractor: UsersListBusinessLogic, UsersListDataStore {
             self.isLoading = false
             if let fetchResponse = result.value {
                 self.presenter?.presentFetchedUsers(response: fetchResponse)
+                self.users = fetchResponse.results
                 self.requestPage = fetchResponse.info.page
                 do {
                     try self.worker.saveUsers(users: fetchResponse.results)

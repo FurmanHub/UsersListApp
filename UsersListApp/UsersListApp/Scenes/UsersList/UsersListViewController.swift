@@ -16,7 +16,7 @@ final class UsersListViewController: UIViewController, UsersListDisplayLogic, UI
     private let userCellIdentifier = "UserCell"
     private let usersTable = UITableView()
     private var interactor: UsersListBusinessLogic?
-    private var router: (NSObjectProtocol & UsersListRoutingLogic & UsersListDataPassing)?
+    private var router: (NSObjectProtocol & UsersListRoutingLogic)?
     private var displayedUsers: [UsersList.FetchUsers.ViewModel.DisplayedUser] = []
     
     // MARK: Object lifecycle
@@ -43,13 +43,18 @@ final class UsersListViewController: UIViewController, UsersListDisplayLogic, UI
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController
-        router.dataStore = interactor
         setupUI()
     }
     
     // MARK: Routing
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let displayedUser = displayedUsers[indexPath.row]
+        let userName = User.UserName.init(first: displayedUser.firstName, last: displayedUser.lastName)
+        let userAvatar = User.UserAvatar.init(medium: displayedUser.avatarUrl)
+        let userID = User.UserID.init(uuid: displayedUser.id)
+        let user = User(name: userName, avatar: userAvatar, phoneNumber: displayedUser.phoneNumber, email: displayedUser.email, id: userID)
+        router?.routeToEditProfile(user: user)
     }
     
     // MARK: View lifecycle
