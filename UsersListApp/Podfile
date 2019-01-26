@@ -7,4 +7,5 @@ target 'UsersListApp' do
     
     # Pods for UsersListApp
     pod 'Kingfisher'
+    pod 'PromiseKit'
 end

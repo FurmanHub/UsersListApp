@@ -1,16 +1,28 @@
 PODS:
   - Kingfisher (4.10.0)
+  - PromiseKit (6.5.2):
+    - PromiseKit/CorePromise (= 6.5.2)
+    - PromiseKit/Foundation (= 6.5.2)
+    - PromiseKit/UIKit (= 6.5.2)
+  - PromiseKit/CorePromise (6.5.2)
+  - PromiseKit/Foundation (6.5.2):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.5.2):
+    - PromiseKit/CorePromise
 
 DEPENDENCIES:
   - Kingfisher
+  - PromiseKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Kingfisher
+    - PromiseKit
 
 SPEC CHECKSUMS:
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
+  PromiseKit: 27c1601bfb73405871b805bcb8cf7e55c4dad3db
 
-PODFILE CHECKSUM: 3e52fdd2dccafd1fbf6ea3c891899066ca9366ee
+PODFILE CHECKSUM: 4e7678db472314f106236cfbe1de1e79aa843f54
 
 COCOAPODS: 1.5.3
