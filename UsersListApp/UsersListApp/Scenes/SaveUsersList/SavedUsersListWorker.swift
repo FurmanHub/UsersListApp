@@ -12,7 +12,7 @@ final class SavedUsersListWorker {
     private let usersStorage = UsersStorage(coreData: CoreDataContainer())
     
     func fetchUsers() -> [User] {
-        return usersStorage.fetchUsers()
+        return try! usersStorage.fetchUsers()
     }
     
     func removeUser(by id: String) {

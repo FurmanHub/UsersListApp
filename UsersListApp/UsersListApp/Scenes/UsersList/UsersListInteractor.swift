@@ -30,20 +30,38 @@ final class UsersListInteractor: UsersListBusinessLogic, UsersListDataStore {
     func fetchUsers(request: UsersList.FetchUsers.Request) {
         guard isLoading == false else { return }
         isLoading = true
-        worker.executeRequest(request: request) { [weak self] (result: Result<UsersList.FetchUsers.Response.UserResponse>) in
-            guard let `self` = self else { return }
-            self.isLoading = false
-            if let fetchResponse = result.value {
-                self.presenter?.presentFetchedUsers(response: fetchResponse)
-                self.users = fetchResponse.results
-                self.requestPage = fetchResponse.info.page
-                do {
-                    try self.worker.saveUsers(users: fetchResponse.results)
-                } catch {
-                    print("Error with saving in UsersListInteractor")
-                }
-            } else {
-                print(result.error?.localizedDescription ?? "Unexpected error")
+        worker.executeRequest(request: request)
+            .done { [weak self] result in
+                guard let self = self else { return }
+                self.isLoading = false
+                self.presenter?.presentFetchedUsers(response: result)
+                self.users = result.results
+                self.requestPage = result.info.page
+                try self.worker.saveUsers(users: result.results)
+            }
+            .catch { [weak self] error in
+                guard let self = self else { return }
+                self.handleErrors(error: error)
+        }
+    }
+    
+    func handleErrors(error: Error) {
+        if let error = error as? UsersStorageErrors {
+            switch error {
+            case .invalidSave:
+                print("Invalid save")
+            case .invalidFetch:
+                print("Invalid fetch")
+            }
+        }
+        if let error = error as? APIError {
+            switch error {
+            case .badRequest:
+                print("Bad request")
+            case .invalidResponse:
+                print("Invalid response")
+            default:
+                print("Unexpected error")
             }
         }
     }

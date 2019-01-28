@@ -7,14 +7,14 @@
 //
 
 import UIKit
+import PromiseKit
+
+enum APIError: Error {
+    case badRequest
+    case invalidResponse
+}
 
 final class UsersListWorker {
-    enum APIError: Error {
-        case badRequest
-        case invalidResponse
-        case malformedURL
-    }
-    
     private let session = URLSession(configuration: .default)
     private let usersStorage = UsersStorage(coreData: CoreDataContainer())
     
@@ -22,27 +22,20 @@ final class UsersListWorker {
         try usersStorage.saveUsers(users: users)
     }
     
-    // I think it's too complicated for this app with 1 request...
-    // Should be like separated service
-    func executeRequest<T: APIRequest, U> (request: T, completion: @escaping (Result<U>) -> Void) where T.ResponseType == U {
-        guard let url = construct(from: request) else {
-            completion(Result.failure(APIError.malformedURL))
-            return
-        }
-        let request = URLRequest(url: url)
-        let task = session.dataTask(with: request) {(data, response, error) -> Void in
-            if let fetchedData = data {
-                do {
-                    let response = try JSONDecoder().decode(U.self, from: fetchedData)
-                    completion(Result.success(response))
-                } catch {
-                    completion(Result.failure(APIError.invalidResponse))
-                }
-            } else {
-                completion(Result.failure(APIError.badRequest))
+    func executeRequest<T: APIRequest, U> (request: T) -> Promise<U> where T.ResponseType == U {
+        return Promise { seal in
+            guard let url = construct(from: request) else {
+                return seal.reject(APIError.badRequest)
+            }
+            firstly {
+                URLSession.shared.dataTask(.promise, with: url)
+            }.done { urlResponse in
+                let userRepsonse = try JSONDecoder().decode(U.self, from: urlResponse.data)
+                return seal.fulfill(userRepsonse)
+            }.catch { error in
+                return seal.reject(APIError.invalidResponse)
             }
         }
-        task.resume()
     }
     
     private func construct<T: APIRequest> (from request: T) -> URL? {

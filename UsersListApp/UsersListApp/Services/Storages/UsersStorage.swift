@@ -12,6 +12,7 @@ import UIKit
 
 enum UsersStorageErrors: Error {
     case invalidSave
+    case invalidFetch
 }
 
 final class UsersStorage {
@@ -44,7 +45,6 @@ final class UsersStorage {
         do {
             try context.save()
         } catch {
-            print("Failed saving to local DB")
             throw UsersStorageErrors.invalidSave
         }
     }
@@ -61,7 +61,7 @@ final class UsersStorage {
         }
     }
     
-    func fetchUsers() -> [User] {
+    func fetchUsers() throws -> [User] {
         var users = [User]()
         let request = UserMO.userMOfetchRequest()
         request.returnsObjectsAsFaults = false
@@ -76,7 +76,7 @@ final class UsersStorage {
                 }
             }
         } catch {
-            print("Failed fetch from local DB")
+            throw UsersStorageErrors.invalidFetch
         }
         return users
     }
