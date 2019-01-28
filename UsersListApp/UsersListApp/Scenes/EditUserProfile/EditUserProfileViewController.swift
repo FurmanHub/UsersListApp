@@ -17,7 +17,7 @@ final class EditUserProfileViewController: UIViewController, UIImagePickerContro
     private var lastNameField: LabelWithInput?
     private var emailField: LabelWithInput?
     private var phoneField: LabelWithInput?
-    private let imagePicker = UIImagePickerController()
+    private lazy var imagePicker = UIImagePickerController()
     
     // MARK: Object lifecycle
     
@@ -41,7 +41,6 @@ final class EditUserProfileViewController: UIViewController, UIImagePickerContro
         viewController.router = router
         router.viewController = viewController
         router.dataStore = interactor
-        imagePicker.delegate = self
     }
     
     private func setupUI() {
@@ -172,6 +171,7 @@ final class EditUserProfileViewController: UIViewController, UIImagePickerContro
     // MARK: Change avatar
     
     @objc private func changeAvatar() {
+        imagePicker.delegate = self
         let alert = UIAlertController(title: "Choose photo picker", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
             self.openCamera()
