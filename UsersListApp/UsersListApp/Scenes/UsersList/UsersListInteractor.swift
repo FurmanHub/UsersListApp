@@ -50,8 +50,8 @@ final class UsersListInteractor: UsersListBusinessLogic, UsersListDataStore {
             switch error {
             case .invalidSave:
                 print("Invalid save")
-            case .invalidFetch:
-                print("Invalid fetch")
+            default:
+                print("Unexpected error")
             }
         }
         if let error = error as? APIError {
@@ -60,8 +60,6 @@ final class UsersListInteractor: UsersListBusinessLogic, UsersListDataStore {
                 print("Bad request")
             case .invalidResponse:
                 print("Invalid response")
-            default:
-                print("Unexpected error")
             }
         }
     }
