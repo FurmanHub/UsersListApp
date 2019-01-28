@@ -116,7 +116,7 @@ class SavedUsersListViewController: UIViewController, SavedUsersListDisplayLogic
         if (editingStyle == .delete) {
             interactor?.removeUserFormLocalDB(by: displayedSavedUsers[indexPath.row].id)
             displayedSavedUsers.remove(at: indexPath.row)
-            reloadTable()
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
     
