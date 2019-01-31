@@ -9,20 +9,33 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.5.2):
     - PromiseKit/CorePromise
+  - ReactiveCocoa (8.0.2):
+    - ReactiveSwift (~> 4.0)
+  - ReactiveSwift (4.0.0):
+    - Result (~> 4.0)
+  - Result (4.0.0)
 
 DEPENDENCIES:
   - Kingfisher
   - PromiseKit
+  - ReactiveCocoa
+  - ReactiveSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Kingfisher
     - PromiseKit
+    - ReactiveCocoa
+    - ReactiveSwift
+    - Result
 
 SPEC CHECKSUMS:
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   PromiseKit: 27c1601bfb73405871b805bcb8cf7e55c4dad3db
+  ReactiveCocoa: fbd26e9ba60e98417ee47433e59465a98ed9da0f
+  ReactiveSwift: a2bb9ace428a109e9c0209615645d9d286c8c433
+  Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
 
-PODFILE CHECKSUM: 4e7678db472314f106236cfbe1de1e79aa843f54
+PODFILE CHECKSUM: 92692f1654d3e6ad22fc97e166e4e7aa5344798b
 
 COCOAPODS: 1.5.3

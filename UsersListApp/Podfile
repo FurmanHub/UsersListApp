@@ -8,4 +8,6 @@ target 'UsersListApp' do
     # Pods for UsersListApp
     pod 'Kingfisher'
     pod 'PromiseKit'
+    pod 'ReactiveSwift'
+    pod 'ReactiveCocoa'
 end
